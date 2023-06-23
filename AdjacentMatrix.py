@@ -1,9 +1,12 @@
 import numpy as np
 
-matrixtest = np.array([[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16,17,18,19,20],[21,22,23,24,25]])
+matrixtest = np.array([[1,2,3,4,5],
+                       [6,7,8,9,10],
+                       [11,12,13,14,15],
+                       [16,17,18,19,20],
+                       [21,22,23,24,25]])
 
 A = np.empty([25,25], dtype=int)
-
 for r in matrixtest:
     print(r)
 
@@ -42,7 +45,24 @@ list = [tup1,tup2,tup3,tup4,tup5,
 
 for i in list:
     for x in i[0:len(i)]:
-        A[i[0]-1][x-1] = 1
+        A[i[0]-1][x-1] = 1 # fill A with ON
 
+print("Augmented Matrix: Part a")
 for a in A:
     print(a)
+
+print("multiply augmented matrix by vector p: Part g")
+print("vector p:")
+p = np.array([[1],[0],[0],[0],[0],
+              [0],[0],[1],[0],[0],
+              [0],[0],[0],[0],[0],
+              [0],[0],[0],[0],[0],
+              [0],[0],[0],[0],[1]])
+print(p)
+test = A.dot(p)
+print("Resulting Matrix with flip, as prior problems assumed start OFF:")
+
+# need to flip values, as both are working under the assumption of starting OFF
+test = np.where((test==0)|(test==1),test^1,test)
+
+print(test)
